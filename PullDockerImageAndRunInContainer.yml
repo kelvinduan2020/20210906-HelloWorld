@@ -8,7 +8,7 @@
     
   tasks:
   - name: stop old docker container
-    command: docker stop {{ webapp }}
+    command: docker stop {{ container_name }}
     ignore_errors: yes
   
   - name: remove old docker image
