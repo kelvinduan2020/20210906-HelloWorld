@@ -8,7 +8,7 @@ node{
     withCredentials([string(credentialsId: 'docker-hub-password', variable: 'dockerHubPWD')]) {
         stage('Build Docker Image And Push to DockerHub'){
             ansiblePlaybook credentialsId: 'ansible-to-webapp', 
-                            extras: "docker_hub_pwd=${dockerHubPWD}", 
+                            extras: "-e docker_hub_pwd=${dockerHubPWD}", 
                             installation: 'ansible', 
                             inventory: 'host.inv', 
                             playbook: 'CreateDockerImageByAnsible.yml'
