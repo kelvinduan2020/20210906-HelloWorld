@@ -1,4 +1,2 @@
 [localhost]
 192.168.0.101 ansible_user=vagrant
-[webserver]
-192.168.0.102 ansible_user=vagrant
