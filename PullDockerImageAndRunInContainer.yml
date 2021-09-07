@@ -20,4 +20,4 @@
     ignore_errors: yes
     
   - name: run docker image in container
-    command: docker run -d -p 8080:8080 --name {{ webapp }} {{ image_name }}:{{ tag_name }}
+    command: docker run -d -p 8080:8080 --name {{ container_name }} {{ image_name }}:{{ tag_name }}
