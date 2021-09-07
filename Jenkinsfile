@@ -11,7 +11,7 @@ node{
                             extras: "-e docker_hub_pwd=${dockerHubPWD}", 
                             installation: 'ansible', 
                             inventory: 'host.inv', 
-                            playbook: 'CreateDockerImageByAnsible.yml'
+                            playbook: 'DockerImageOperationByAnsible.yml'
         }
     }
 }
