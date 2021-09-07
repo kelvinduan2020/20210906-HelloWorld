@@ -5,10 +5,10 @@ node{
     stage('Maven Build'){
         sh 'mvn clean install package'
     }
-    withCredentials([string(credentialsId: 'docker-hub-password', variable: 'docker-hub-pwd')]) {
+    withCredentials([string(credentialsId: 'docker-hub-password', variable: 'dockerHubPWD')]) {
         stage('Build Docker Image And Push to DockerHub'){
             ansiblePlaybook credentialsId: 'ansible-to-webapp', 
-                            extras: "docker_hub_pwd=${docker-hub-pwd}", 
+                            extras: "docker_hub_pwd=${dockerHubPWD}", 
                             installation: 'ansible', 
                             inventory: 'host.inv', 
                             playbook: 'CreateDockerImageByAnsible.yml'
