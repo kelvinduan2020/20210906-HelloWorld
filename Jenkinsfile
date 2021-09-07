@@ -4,5 +4,8 @@ node{
     }
     stage('Maven Build'){
         sh 'mvn clean install package'
-    } 
+    }
+    stage('Build Docker Image'){
+        sh 'docker build -t kelvinduan/webapp:latest .'
+    }
 }
