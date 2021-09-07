@@ -4,3 +4,5 @@
   tasks:
   - name: build docker image
     command: docker build -t kelvinduan/webapp:latest .
+    args:
+      chdir: /var/lib/jenkins/workspace/Maven-Ansible-Docker
