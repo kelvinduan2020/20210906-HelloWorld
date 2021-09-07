@@ -11,6 +11,10 @@
     command: docker stop {{ container_name }}
     ignore_errors: yes
   
+  - name: remove old docker container
+    command: docker rm {{ container_name }}
+    ignore_errors: yes
+  
   - name: remove old docker image
     command: docker rmi {{ image_name }}:{{ tag_name }}
     ignore_errors: yes
