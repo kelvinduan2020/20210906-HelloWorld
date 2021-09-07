@@ -6,6 +6,7 @@ node{
         sh 'mvn clean install package'
     }
     stage('Build Docker Image'){
-        sh 'docker build -t kelvinduan/webapp:latest .'
+        //sh 'docker build -t kelvinduan/webapp:latest .'
+        ansiblePlaybook installation: 'ansible', inventory: 'host.inv', playbook: 'CreateDockerImageByAnsible.yml'
     }
 }
