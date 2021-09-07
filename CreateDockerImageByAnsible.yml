@@ -3,4 +3,4 @@
   become: true
   tasks:
   - name: build docker image
-    command: docker build -t kelvinduan/webapp:latest .
+    command: docker build -t kelvinduan/webapp:latest . --limit localhost
