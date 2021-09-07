@@ -10,14 +10,17 @@ node{
     withCredentials([string(credentialsId: 'docker-hub-password', variable: 'dockerHubPWD')]) {
         stage('Build Docker Image & Push to DockerHub'){
             ansiblePlaybook credentialsId: 'ansible-to-webapp', 
-                            extras: "-e docker_hub_pwd=${dockerHubPWD}", 
                             installation: 'ansible', 
-                            inventory: 'host.inv', 
-                            playbook: 'CreateDockerImageAndPushToDockerHubByAnsible.yml'
+                            inventory: 'host.inv',
+                            playbook: 'CreateDockerImageAndPushToDockerHub.yml',  
+                            extras: "-e docker_hub_pwd=${dockerHubPWD}"
         }
     }
     
-    stage('Run Docker Image in Web Server'){
-        ansiblePlaybook credentialsId: 'ansible-to-webapp', installation: 'ansible', inventory: 'host.inv', playbook: 'PullDockerImageAndRunInContainer.yml'
+    stage('Run Docker Image in Web Server Container'){
+        ansiblePlaybook credentialsId: 'ansible-to-webapp', 
+                        installation: 'ansible', 
+                        inventory: 'host.inv', 
+                        playbook: 'PullDockerImageAndRunInContainer.yml'
     }
 }
