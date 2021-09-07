@@ -4,6 +4,7 @@
   vars:
     image_name: kelvinduan/webapp
     tag_name: latest
+    
   tasks:
   - name: remove old docker image
     command: docker rmi {{ image_name }}:{{ tag_name }}
@@ -13,3 +14,6 @@
     command: docker build -t {{ image_name }}:{{ tag_name }} .
     args:
       chdir: /var/lib/jenkins/workspace/Maven-Ansible-Docker
+      
+  - name: push docker image to docker hub
+    command: docker push {{ image_name }}:{{ tag_name }}
