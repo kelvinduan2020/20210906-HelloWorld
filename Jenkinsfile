@@ -7,6 +7,6 @@ node{
     }
     stage('Build Docker Image'){
         //sh 'docker build -t kelvinduan/webapp:latest .'
-        ansiblePlaybook installation: 'ansible', inventory: 'host.inv', playbook: 'CreateDockerImageByAnsible.yml'
+        ansiblePlaybook credentialsId: 'ansible-to-webapp', installation: 'ansible', inventory: 'host.inv', playbook: 'CreateDockerImageByAnsible.yml'
     }
 }
