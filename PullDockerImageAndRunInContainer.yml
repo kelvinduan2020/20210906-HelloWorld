@@ -12,7 +12,7 @@
     ignore_errors: yes
   
   - name: remove old docker image
-    command docker rmi {{ image_name }}:{{ tag_name }}
+    command: docker rmi {{ image_name }}:{{ tag_name }}
     ignore_errors: yes
     
   - name: pull new docker image
