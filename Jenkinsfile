@@ -1,6 +1,6 @@
 node{
     stage('Git Checkout'){
-        git 'https://github.com/kelvinduan2020/20210906-HelloWorld.git'
+        git 'https://github.com/kelvinduan2020/20210906-MavenProject.git'
     }
     
     stage('Maven Build'){
