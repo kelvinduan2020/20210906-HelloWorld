@@ -30,5 +30,4 @@ node{
                         inventory: 'ansible/host.inv', 
                         playbook: 'ansible/DeployOnContainer.yml'
     }
-    }
 }
