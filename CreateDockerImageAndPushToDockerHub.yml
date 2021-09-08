@@ -2,8 +2,9 @@
 - hosts: localhost
   become: true
   vars:
-    image_name: kelvinduan/webapp
+    image_name: kelvinduan/mavenwebapp
     tag_name: latest
+    jenkins_job_name: 20210906-Maven-Ansible-Docker
     
   tasks:
   - name: remove old docker image
@@ -13,7 +14,7 @@
   - name: build new docker image
     command: docker build -t {{ image_name }}:{{ tag_name }} .
     args:
-      chdir: /var/lib/jenkins/workspace/Maven-Ansible-Docker
+      chdir: /var/lib/jenkins/workspace/{{ jenkins_job_name }}
       
   - name: login to docker hub
     command: docker login -u kelvinduan -p {{ docker_hub_pwd }}
