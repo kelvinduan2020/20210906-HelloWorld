@@ -2,9 +2,10 @@
 - hosts: webserver
   become: true
   vars:
-    image_name: kelvinduan/webapp
+    image_name: kelvinduan/mavenwebapp
     tag_name: latest
-    container_name: webapp
+    container_name: mavenwebapp
+    port: 8080
     
   tasks:
   - name: stop old docker container
@@ -24,4 +25,4 @@
     ignore_errors: yes
     
   - name: run docker image in container
-    command: docker run -d -p 8080:8080 --name {{ container_name }} {{ image_name }}:{{ tag_name }}
+    command: docker run -d -p {{ port }}:{{ port }} --name {{ container_name }} {{ image_name }}:{{ tag_name }}
