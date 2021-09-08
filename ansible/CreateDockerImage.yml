@@ -15,9 +15,3 @@
     command: docker build -t {{ image_name }}:{{ tag_name }} .
     args:
       chdir: /var/lib/jenkins/workspace/{{ jenkins_job_name }}
-      
-  - name: login to docker hub
-    command: docker login -u kelvinduan -p {{ docker_hub_pwd }}
-    
-  - name: push docker image to docker hub
-    command: docker push {{ image_name }}:{{ tag_name }}

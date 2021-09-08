@@ -7,20 +7,28 @@ node{
         sh 'mvn clean install package'
     }
     
+    stage('Create Docker Image'){
+        ansiblePlaybook credentialsId: 'ansible-to-webapp',
+                        installation: 'ansible', 
+                        inventory: 'ansible/host.inv', 
+                        playbook: 'ansible/CreateDockerImage.yml'
+    }
+    
     withCredentials([string(credentialsId: 'docker-hub-password', variable: 'dockerHubPWD')]) {
-        stage('Build Docker Image & Push to DockerHub'){
+        stage('Push to DockerHub'){
             ansiblePlaybook credentialsId: 'ansible-to-webapp', 
                             installation: 'ansible', 
-                            inventory: 'host.inv',
-                            playbook: 'CreateDockerImageAndPushToDockerHub.yml',  
+                            inventory: 'ansible/host.inv',
+                            playbook: 'ansible/PushToDockerHub.yml',  
                             extras: "-e docker_hub_pwd=${dockerHubPWD}"
         }
     }
     
-    stage('Run Docker Image in Web Server Container'){
+    stage('Run On Container'){
         ansiblePlaybook credentialsId: 'ansible-to-webapp', 
                         installation: 'ansible', 
-                        inventory: 'host.inv', 
-                        playbook: 'PullDockerImageAndRunInContainer.yml'
+                        inventory: 'ansible/host.inv', 
+                        playbook: 'ansible/DeployOnContainer.yml'
+    }
     }
 }
